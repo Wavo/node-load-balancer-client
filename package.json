@@ -1,0 +1,16 @@
+{
+  "author": "Diogo Biazus <diogo@biazus.me>",
+  "name": "llb-client",
+  "description": "Lean Load Balancer Client - Register instance in the LLB Server",
+  "version": "0.0.0",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "0.4.x"
+  },
+  "dependencies": {
+    "underscore": "~1.3.1"
+  },
+  "devDependencies": {}
+}
