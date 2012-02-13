@@ -1,22 +1,21 @@
 var LLBClient = require('../lib/llb-client');
 var config = {
-  class: 'ClassA',
-  version: '0.0.1',
-  host: '127.0.0.1',
-  port: 9000,
-  serverHost: '127.0.0.1',
-  serverPort: '3000'
+  instance: {
+    class: 'ClassA',
+    version: '0.0.1',
+    host: '127.0.0.1',
+    port: 9000
+  },
+  server: {
+    host: '127.0.0.1',
+    port: '3000'
+  }
 };
 var client = new LLBClient(config);
 
 describe("LLBClient", function(){
   var req = {write: function(){}, end: function(){}, on: function(){}};
-  var instance = JSON.stringify({
-    class: 'ClassA',
-    version: '0.0.1',
-    host: '127.0.0.1',
-    port: 9000
-  });
+  var instance = JSON.stringify(config.instance);
 
   beforeEach(function(){
     spyOn(req, "write");
@@ -41,8 +40,8 @@ describe("LLBClient", function(){
 
     it("should make an http request to the server and post the register command in the body", function(){
       expect(client.http.request).toHaveBeenCalledWith({
-        host: config.serverHost,
-        port: config.serverPort,
+        host: config.server.host,
+        port: config.server.port,
         method: 'DELETE',
         path: '/router/instances',
         headers: {
@@ -68,8 +67,8 @@ describe("LLBClient", function(){
 
     it("should make an http request to the server and post the register command in the body", function(){
       expect(client.http.request).toHaveBeenCalledWith({
-        host: config.serverHost,
-        port: config.serverPort,
+        host: config.server.host,
+        port: config.server.port,
         method: 'POST',
         path: '/router/instances',
         headers: {
